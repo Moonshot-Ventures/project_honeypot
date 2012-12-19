@@ -1,6 +1,4 @@
-# A sample Gemfile
 source "http://rubygems.org"
 
-gem "rspec"
-gem "flexmock"
-gem "net-dns"
+# Specify your gem's dependencies in project-honeypot.gemspec
+gemspec
