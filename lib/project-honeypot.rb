@@ -1,6 +1,7 @@
 require 'net/dns'
-require File.dirname(__FILE__) + "/project_honeypot/url.rb"
-require File.dirname(__FILE__) + "/project_honeypot/base.rb"
+require "project_honeypot/url"
+require "project_honeypot/base"
+require "project_honeypot/rack"
 
 module ProjectHoneypot
   class << self
