@@ -1,4 +1,4 @@
-module ProjectHoneypot 
+module ProjectHoneypot
   class Base
     def initialize(api_key)
       @api_key = api_key
@@ -11,7 +11,7 @@ module ProjectHoneypot
       Url.new(ip_address, honeypot_score)
     end
 
-    private 
+    private
 
     def url_to_ip(url)
       return url if url.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)

@@ -1,5 +1,5 @@
-module ProjectHoneypot
-  class Rack
+module ProjectHoneypot::Rack
+  class Forbidden
     def initialize(app, options={})
       @app = app
 
@@ -11,9 +11,11 @@ module ProjectHoneypot
       request = ::Rack::Request.new(env)
       url = ProjectHoneypot.lookup(request.ip)
 
-      env['PROJECT_HONEYPOT_SAFE'] = url.safe?
-
-      @app.call(request.env)
+      if url.safe?
+        @app.call(request.env)
+      else
+        [403, {"Content-Type" => "text/html"}, ["Forbidden"]]
+      end
     end
   end
 end

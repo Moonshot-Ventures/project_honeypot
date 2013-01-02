@@ -1,7 +1,8 @@
 require 'net/dns'
 require "project_honeypot/url"
 require "project_honeypot/base"
-require "project_honeypot/rack"
+require "project_honeypot/rack/header"
+require "project_honeypot/rack/forbidden"
 
 module ProjectHoneypot
   class << self
