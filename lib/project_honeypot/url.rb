@@ -7,8 +7,16 @@ module ProjectHoneypot
       process_score(honeypot_response)
     end
 
-    def safe?
-      @safe
+    def safe?(hash = {})
+      score = hash[:score] || ProjectHoneypot.score
+      last_activity = hash[:last_activity] || ProjectHoneypot.last_activity
+
+      @safe ||
+        !(
+          last_activity.nil? && score.nil? ||
+          !score.nil? && self.score > score ||
+          !last_activity.nil? && self.last_activity > last_activity
+        )
     end
 
     def comment_spammer?
