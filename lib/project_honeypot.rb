@@ -6,7 +6,7 @@ require "project_honeypot/rack/forbidden"
 
 module ProjectHoneypot
   class << self
-    attr_accessor :api_key, :score, :last_activity
+    attr_accessor :api_key, :score, :last_activity, :offenses
 
     def api_key
       raise "ProjectHoneypot really needs its api_key set to work" unless @api_key

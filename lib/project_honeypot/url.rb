@@ -27,11 +27,18 @@ module ProjectHoneypot
       score = hash[:score] || ProjectHoneypot.score
       last_activity = hash[:last_activity] || ProjectHoneypot.last_activity
 
+      forbidden_offenses = hash[:offenses] ||
+                            ProjectHoneypot.offenses ||
+                            [:comment_spammer, :harvester, :suspicious]
+
+      detected_offenses = forbidden_offenses & @offenses
+
       @safe ||
+        detected_offenses.length == 0 ||
         !(
           last_activity.nil? && score.nil? ||
-          !score.nil? && self.score > score ||
-          !last_activity.nil? && self.last_activity > last_activity
+          !score.nil? && self.score >= score ||
+          !last_activity.nil? && self.last_activity >= last_activity
         )
     end
 
