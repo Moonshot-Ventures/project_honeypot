@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'project_honeypot/version'
 
 Gem::Specification.new do |s|
-  s.name = %q{project-honeypot}
+  s.name = %q{project_honeypot}
   s.version = ProjectHoneypot::VERSION
   s.authors = ["Charles Max Wood", "Guillaume DOTT"]
   s.email = ["chuck@teachmetocode.com", "guillaume+github@dott.fr"]
