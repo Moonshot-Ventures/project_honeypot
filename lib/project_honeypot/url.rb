@@ -1,6 +1,22 @@
 module ProjectHoneypot
   class Url
-    attr_reader :ip_address, :last_activity, :score, :offenses
+    SEARCH_ENGINES = %w(
+      Undocumented
+      AltaVista
+      Ask
+      Baidu
+      Excite
+      Google
+      Looksmart
+      Lycos
+      MSN
+      Yahoo
+      Cuil
+      InfoSeek
+      Miscellaneous
+    )
+
+    attr_reader :ip_address, :last_activity, :score, :offenses, :search_engine
     def initialize(ip_address, honeypot_response)
       @ip_address = ip_address
       @safe = honeypot_response.nil?
@@ -17,6 +33,10 @@ module ProjectHoneypot
           !score.nil? && self.score > score ||
           !last_activity.nil? && self.last_activity > last_activity
         )
+    end
+
+    def search_engine?
+      @offenses.include?(:search_engine)
     end
 
     def comment_spammer?
@@ -40,9 +60,20 @@ module ProjectHoneypot
         @offenses = []
       else
         hp_array = honeypot_response.split(".")
-        @last_activity = hp_array[1].to_i
-        @score = hp_array[2].to_i
-        @offenses = set_offenses(hp_array[3])
+
+        if hp_array[3].to_i == 0
+          # search engine
+          @last_activity = nil
+          @score = 0
+          @offenses = [:search_engine]
+          @search_engine = (hp_array[2].to_i < SEARCH_ENGINES.length ?
+                            SEARCH_ENGINES[hp_array[2].to_i] :
+                            SEARCH_ENGINES[0])
+        else
+          @last_activity = hp_array[1].to_i
+          @score = hp_array[2].to_i
+          @offenses = set_offenses(hp_array[3])
+        end
       end
     end
 
