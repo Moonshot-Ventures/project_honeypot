@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = ["chuck@teachmetocode.com", "guillaume+github@dott.fr"]
   s.summary = %q{Project-Honeypot provides a programatic interface to the Project Honeypot services.}
   s.description = %q{Project-Honeypot provides a programatic interface to the Project Honeypot services. It can be used to identify spammers, bogus commenters, and harvesters. You will need a FREE api key from http://projecthoneypot.org}
-  s.homepage = ""
+  s.homepage = "https://github.com/gdott9/project_honeypot"
 
   s.files = `git ls-files`.split($/)
   s.executables = s.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
