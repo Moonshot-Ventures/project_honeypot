@@ -19,15 +19,16 @@ This Gem requires that you have an Http:BL API key from Project Honeypot. You ca
 
 == Usage
 
+  require 'project_honeypot'
+
 HTTP:BL lookups through Project Honeypot result in a Url object that gives you the risk score, last activity, and types of offenses the ip address is listed for.
 
 The score is worse the higher it is and the last_activity is in days.
 
+
 === Example #1: Suspicious IP Address
 
-Given an api key of "abcdefghijkl"
-
-  @listing = ProjectHoneypot.lookup("abcdefghijkl", "192.168.1.1")
+  @listing = ProjectHoneypot.lookup("<ip_address>", "<api_key>")
   @listing.safe?
   # => false
 
@@ -60,7 +61,7 @@ Given an api key of "abcdefghijkl"
 
 === Example #2: Safe IP Address
 
-  @listing = ProjectHoneypot.lookup("192.168.1.1")
+  @listing = ProjectHoneypot.lookup("<ip_address>")
   @listing.safe?
   # => true
 

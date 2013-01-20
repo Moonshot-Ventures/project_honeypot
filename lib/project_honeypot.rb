@@ -18,12 +18,12 @@ module ProjectHoneypot
     end
   end
 
-  def self.lookup(api_key_or_url, url=nil)
-    if url.nil?
-      url = api_key_or_url
-      api_key_or_url = ProjectHoneypot.api_key
-    end
-    searcher = Base.new(api_key_or_url)
+  def self.lookup(url, api_key=nil)
+    api_key ||= ProjectHoneypot.api_key
+
+    raise ArgumentError, 'Must specify an API key' unless api_key
+
+    searcher = Base.new(api_key)
     searcher.lookup(url)
   end
 end
