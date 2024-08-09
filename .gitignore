@@ -1,6 +1,6 @@
 *.gem
 Gemfile.lock
 tmp
-
 .*.swp
 *~
+vendor/bundle
