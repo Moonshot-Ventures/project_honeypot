@@ -20,4 +20,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'flexmock'
 
   s.add_runtime_dependency 'net-dns', '~> 0.20.0'
+  s.add_runtime_dependency 'logger', '~> 1.6'
 end
